@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  name: "TopoPadrao",
+  name: "TopoComponente",
 };
 </script>
 
