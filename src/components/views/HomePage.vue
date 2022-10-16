@@ -2,60 +2,59 @@
   <div class="container py-4">
     <div class="row">
       <div class="col">
-        <div class="h-100 p-5 bg-light border rouded-3">
-          <h2>Pesquisar Vagas</h2>
-          <div class="row">
-            <div class="col">
-              <div class="form-group">
-                <label>Título da Vaga</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Pesquise por palavras chaves..."
-                />
-                <small class="form-text text-muted"
-                  >Informe palavras que estejam relacionadas com o tipo de vaga
-                  que você procura.</small
-                >
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <button class="btn btn-outline-dark mt-2" type="button">Buscar</button>
-            </div>
-          </div>
-        </div>
+        <pesquisar-vaga></pesquisar-vaga>
       </div>
     </div>
+
     <div class="row mt-5">
       <div class="col-4">
-        <div class="h-100 p-5 rounded-3 border bg-dark text-white">
-          <p>Profissionais cadastrados</p>
-          <h2>15</h2>
-        </div>
+        <indicador-vaga
+          titulo="Vagas abertas"
+          indicador="100"
+          bg="bg-dark"
+          color="text-white"
+        ></indicador-vaga>
       </div>
       <div class="col-4">
-        <div class="h-100 p-5 rounded-3 border bg-dark text-white">
-          <p>Visitantes onine</p>
-          <h2>29</h2>
-        </div>
+        <indicador-vaga
+          titulo="Profissionais cadastrados"
+          indicador="220"
+          bg="bg-dark"
+          color="text-white"
+        ></indicador-vaga>
       </div>
       <div class="col-4">
-        <div class="h-100 p-5 rounded-3 border bg-dark text-white">
-          <p>Vagas abertas</p>
-          <h2>24</h2>
-        </div>
+        <indicador-vaga
+          titulo="Visitantes online"
+          :indicador="usuariosOnline"
+          bg="bg-ligth"
+          color="text-dark"
+        ></indicador-vaga>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import IndicadorVaga from "../common/IndicadorVaga.vue";
+import PesquisarVaga from "../common/PesquisarVaga.vue";
+
 export default {
   name: "HomePage",
+  components: {
+    PesquisarVaga,
+    IndicadorVaga,
+  },
+  data: () => ({
+    usuariosOnline: 0,
+  }),
+  methods: {
+    getUsuariosOnline() {
+      this.usuariosOnline = Math.floor(Math.random() * 101);
+    },
+  },
+  created() {
+    setInterval(this.getUsuariosOnline, 1000);
+  },
 };
 </script>
-
-<style scoped>
-</style>
