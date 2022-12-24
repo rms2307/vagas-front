@@ -8,7 +8,7 @@
       <small class="text-muted">
         Salário: R$ {{ salario }} | Modalidade: {{ getModalidade }} | Tipo:
         {{ getTipo }} | Publicação:
-        {{ publicacao }}
+        {{ getPublicacao }}
       </small>
     </div>
   </div>
@@ -86,6 +86,10 @@ export default {
           return "PJ";
       }
       return "";
+    },
+    getPublicacao() {
+      let dataPublicacao = new Date(this.publicacao);
+      return dataPublicacao.toLocaleDateString("pt-BR");
     },
   },
 };
