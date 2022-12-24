@@ -24,7 +24,7 @@
       <div class="col-4">
         <indicador-vaga
           titulo="Vagas abertas"
-          indicador="100"
+          :indicador="vagasAbertas"
           bg="bg-dark"
           color="text-white"
         ></indicador-vaga>
@@ -63,6 +63,7 @@ export default {
   },
   data: () => ({
     usuariosOnline: 0,
+    vagasAbertas: 0,
     vagas: [],
   }),
   methods: {
@@ -75,6 +76,7 @@ export default {
   },
   mounted() {
     this.vagas = JSON.parse(localStorage.getItem("vagas"));
+    this.vagasAbertas = this.vagas.length;
   },
 };
 </script>
