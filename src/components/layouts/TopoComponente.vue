@@ -16,10 +16,17 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#" @click="navegarPara('HomePage')"
+              >Home</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Publicar Vagas</a>
+            <a
+              class="nav-link"
+              href="#"
+              @click="navegarPara('PublicarVagaPage')"
+              >Publicar Vagas</a
+            >
           </li>
         </ul>
       </div>
@@ -30,6 +37,11 @@
 <script>
 export default {
   name: "TopoComponente",
+  methods: {
+    navegarPara(value) {
+      this.$emit("navegar", value);
+    },
+  },
 };
 </script>
 
