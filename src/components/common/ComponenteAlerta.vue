@@ -1,8 +1,13 @@
 <template>
   <div class="alert alert-success" role="alert">
-    A simple success alert—check it out!
+    <slot name="titulo">
+      <h3>Título da mensagem de feedback!</h3>
+    </slot>
+    <hr />
+    <slot><p>Mensagem de feedback!</p></slot>
   </div>
 </template>
+
 <script>
 export default {
   name: "ComponenteAlerta",
