@@ -87,11 +87,22 @@ export default {
         publicacao: this.getDataPublicacao(),
       });
 
-      localStorage.setItem("vagas", JSON.stringify(vagas));
+      const resultadoValidarFormulario = this.validarFormulario();
+      if (resultadoValidarFormulario.valido) {
+        localStorage.setItem("vagas", JSON.stringify(vagas));
 
-      this.emitirEventoAlertaSucesso();
+        this.emitirEventoAlerta(
+          `A vaga ${this.titulo} foi cadastrada com sucesso!`,
+          `Parabéns, a vaga foi cadastrada e poderá ser consultada por diversos profissionais!`
+        );
 
-      this.limparFormulario();
+        this.limparFormulario();
+      } else {
+        this.emitirEventoAlerta(
+          `Erro ao cadastrar vaga!`,
+          `O campo ${resultadoValidarFormulario.campo} é obrigatorio!`
+        );
+      }
     },
     limparFormulario() {
       this.titulo = "";
@@ -105,11 +116,27 @@ export default {
       let dataAtual = new Date(tempoDecorrido);
       return dataAtual.toISOString();
     },
-    emitirEventoAlertaSucesso() {
+    emitirEventoAlerta(titulo, descricao) {
       this.emitter.emit("alerta", {
-        titulo: `A vaga ${this.titulo} foi cadastrada com sucesso!`,
-        descricao: `Parabéns, a vaga foi cadastrada e poderá ser consultada por diversos profissionais!`,
+        titulo: titulo,
+        descricao: descricao,
       });
+    },
+    validarFormulario() {
+      let resultado = { valido: true, campo: "" };
+
+      if (this.titulo === "")
+        return (resultado = { valido: false, campo: "título" });
+      if (this.descricao === "")
+        return (resultado = { valido: false, campo: "descrição" });
+      if (this.salario === "")
+        return (resultado = { valido: false, campo: "salário" });
+      if (this.modalidade === "")
+        return (resultado = { valido: false, campo: "modalidade" });
+      if (this.tipo === "")
+        return (resultado = { valido: false, campo: "tipo" });
+
+      return resultado;
     },
   },
 };
