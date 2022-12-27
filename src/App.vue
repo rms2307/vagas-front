@@ -2,7 +2,7 @@
   <div>
     <componente-vagas-favoritas />
     <componente-topo @navegar="componente = $event" />
-    <componente-alerta v-if="alertaVisivel">
+    <componente-alerta v-if="alertaVisivel" :tipo="alerta.tipo">
       <template v-slot:titulo>
         <h5>{{ alerta.titulo }}</h5>
       </template>
@@ -23,7 +23,7 @@ export default {
   data: () => ({
     componente: "HomePage",
     alertaVisivel: false,
-    alerta: { titulo: "", descricao: "" },
+    alerta: { tipo: "", titulo: "", descricao: "" },
   }),
   components: {
     ComponenteTopo,

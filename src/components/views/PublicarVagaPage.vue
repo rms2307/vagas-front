@@ -92,6 +92,7 @@ export default {
         localStorage.setItem("vagas", JSON.stringify(vagas));
 
         this.emitirEventoAlerta(
+          `sucesso`,
           `A vaga ${this.titulo} foi cadastrada com sucesso!`,
           `Parabéns, a vaga foi cadastrada e poderá ser consultada por diversos profissionais!`
         );
@@ -99,6 +100,7 @@ export default {
         this.limparFormulario();
       } else {
         this.emitirEventoAlerta(
+          `erro`,
           `Erro ao cadastrar vaga!`,
           `O campo ${resultadoValidarFormulario.campo} é obrigatorio!`
         );
@@ -116,8 +118,9 @@ export default {
       let dataAtual = new Date(tempoDecorrido);
       return dataAtual.toISOString();
     },
-    emitirEventoAlerta(titulo, descricao) {
+    emitirEventoAlerta(tipo, titulo, descricao) {
       this.emitter.emit("alerta", {
+        tipo: tipo,
         titulo: titulo,
         descricao: descricao,
       });
