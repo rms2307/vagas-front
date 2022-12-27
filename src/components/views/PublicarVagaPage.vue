@@ -88,6 +88,15 @@ export default {
       });
 
       localStorage.setItem("vagas", JSON.stringify(vagas));
+
+      this.limparFormulario();
+    },
+    limparFormulario() {
+      this.titulo = "";
+      this.descricao = "";
+      this.salario = "";
+      this.modalidade = "";
+      this.tipo = "";
     },
     getDataPublicacao() {
       let tempoDecorrido = Date.now();
