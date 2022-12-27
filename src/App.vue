@@ -1,15 +1,15 @@
 <template>
   <div>
-    <vagas-favoritas />
-    <topo-componente @navegar="componente = $event"> </topo-componente>
-    <conteudo-componente :conteudo="componente"></conteudo-componente>
+    <componente-vagas-favoritas />
+    <componente-topo @navegar="componente = $event" />
+    <componente-conteudo :conteudo="componente" />
   </div>
 </template>
 
 <script>
-import VagasFavoritas from "./components/common/VagasFavoritas.vue";
-import ConteudoComponente from "./components/layouts/ConteudoComponente.vue";
-import TopoComponente from "./components/layouts/TopoComponente.vue";
+import ComponenteVagasFavoritas from "./components/common/ComponenteVagasFavoritas.vue";
+import ComponenteConteudo from "./components/layouts/ComponenteConteudo.vue";
+import ComponenteTopo from "./components/layouts/ComponenteTopo.vue";
 
 export default {
   name: "App",
@@ -17,9 +17,9 @@ export default {
     componente: "HomePage",
   }),
   components: {
-    TopoComponente,
-    ConteudoComponente,
-    VagasFavoritas,
+    ComponenteTopo,
+    ComponenteConteudo,
+    ComponenteVagasFavoritas,
   },
 };
 </script>

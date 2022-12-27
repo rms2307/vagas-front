@@ -2,7 +2,7 @@
   <div class="container py-4">
     <div class="row">
       <div class="col">
-        <pesquisar-vaga></pesquisar-vaga>
+        <componente-pesquisar-vaga />
       </div>
     </div>
 
@@ -16,50 +16,50 @@
           :tipo="vaga.tipo"
           :publicacao="vaga.publicacao"
         /> -->
-        <vaga-app v-bind="vaga" />
+        <componente-vaga v-bind="vaga" />
       </div>
     </div>
 
     <div class="row mt-5">
       <div class="col-4">
-        <indicador-vaga
+        <componente-indicador-vaga
           titulo="Vagas abertas"
           :indicador="vagasAbertas"
           bg="bg-dark"
           color="text-white"
-        ></indicador-vaga>
+        />
       </div>
       <div class="col-4">
-        <indicador-vaga
+        <componente-indicador-vaga
           titulo="Profissionais cadastrados"
           indicador="220"
           bg="bg-dark"
           color="text-white"
-        ></indicador-vaga>
+        />
       </div>
       <div class="col-4">
-        <indicador-vaga
+        <componente-indicador-vaga
           titulo="Visitantes online"
           :indicador="usuariosOnline"
           bg="bg-ligth"
           color="text-dark"
-        ></indicador-vaga>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import IndicadorVaga from "../common/IndicadorVaga.vue";
-import PesquisarVaga from "../common/PesquisarVaga.vue";
-import VagaApp from "../common/VagaApp.vue";
+import ComponenteIndicadorVaga from "../common/ComponenteIndicadorVaga.vue";
+import ComponentePesquisarVaga from "../common/ComponentePesquisarVaga.vue";
+import ComponenteVaga from "../common/ComponenteVaga.vue";
 
 export default {
   name: "HomePage",
   components: {
-    PesquisarVaga,
-    IndicadorVaga,
-    VagaApp,
+    ComponenteIndicadorVaga,
+    ComponentePesquisarVaga,
+    ComponenteVaga,
   },
   data: () => ({
     usuariosOnline: 0,

@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-  name: "IndicadorVaga",
+  name: "ComponenteIndicadorVaga",
   props: ["titulo", "indicador", "bg", "color"],
   computed:{
     estilo() {

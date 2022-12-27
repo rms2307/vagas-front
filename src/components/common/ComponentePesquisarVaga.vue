@@ -33,6 +33,6 @@
 
 <script>
 export default {
-  name: "PesquisaVaga",
+  name: "ComponentePesquisarVaga",
 };
 </script>

@@ -8,7 +8,7 @@
 import HomePage from "../views/HomePage.vue";
 import PublicarVagaPage from "../views/PublicarVagaPage.vue";
 export default {
-  name: "ConteudoComponente",
+  name: "ComponenteConteudo",
   props: {
     conteudo: {
       type: String,

@@ -32,7 +32,7 @@
 
 <script>
 export default {
-  name: "VagaApp",
+  name: "ComponenteVaga",
   data: () => ({
     favoritada: false,
   }),

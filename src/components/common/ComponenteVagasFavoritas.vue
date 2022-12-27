@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: "VagasFavoritas",
+  name: "ComponenteVagasFavoritas",
   data: () => ({
     vagas: [],
   }),

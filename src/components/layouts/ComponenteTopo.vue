@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: "TopoComponente",
+  name: "ComponenteTopo",
   methods: {
     navegarPara(value) {
       this.$emit("navegar", value);
