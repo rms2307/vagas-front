@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Vagas</a>
+      <a class="navbar-brand text-light" href="#">Vagas</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -16,13 +16,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" href="#" @click="navegarPara('HomePage')"
+            <a
+              class="nav-link text-light"
+              href="#"
+              @click="navegarPara('HomePage')"
               >Home</a
             >
           </li>
           <li class="nav-item">
             <a
-              class="nav-link"
+              class="nav-link text-light"
               href="#"
               @click="navegarPara('PublicarVagaPage')"
               >Publicar Vagas</a
@@ -44,5 +47,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

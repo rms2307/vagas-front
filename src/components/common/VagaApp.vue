@@ -1,6 +1,22 @@
 <template>
   <div class="card">
-    <div class="card-header bg-dark text-white">{{ titulo }}</div>
+    <div class="card-header bg-dark text-white">
+      <div class="col d-flex justify-content-between">
+        <div>
+          {{ titulo }}
+        </div>
+        <div>
+          <div class="form-check form-switch">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              v-model="favoritada"
+            />
+            <label for="" class="form-check-label">Favoritar</label>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="card-body">
       <p>{{ descricao }}</p>
     </div>
@@ -17,6 +33,18 @@
 <script>
 export default {
   name: "VagaApp",
+  data: () => ({
+    favoritada: false,
+  }),
+  watch: {
+    favoritada(input) {
+      if (input) {
+        this.emitter.emit("favoritarVaga", this.titulo);
+      } else {
+        this.emitter.emit("desfavoritarVaga", this.titulo);
+      }
+    },
+  },
   // props: ["titulo", "descricao", "salario", "modalidade", "tipo", "publicacao"],
   props: {
     titulo: {
@@ -68,6 +96,7 @@ export default {
       },
     },
   },
+  methods: {},
   computed: {
     getModalidade() {
       switch (this.modalidade) {
