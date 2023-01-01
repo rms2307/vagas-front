@@ -11,9 +11,27 @@ import ComponenteVaga from "../common/ComponenteVaga.vue";
 
 export default {
   name: "ComponenteListaVagas",
-  props: { vagas: Array },
+  data: () => ({
+    vagas: [],
+  }),
   components: {
     ComponenteVaga,
+  },
+  methods: {
+    filtrarVagas() {
+      this.emitter.on("filtrarVagas", (input) => {
+        const vagas = JSON.parse(localStorage.getItem("vagas"));
+        this.vagas = vagas.filter((v) =>
+          v.titulo.toLowerCase().includes(input.titulo.toLowerCase())
+        );
+      });
+    },
+  },
+  mounted() {
+    this.vagas = JSON.parse(localStorage.getItem("vagas"));
+    this.quantidadeVagasAbertas = this.vagas.length;
+
+    this.filtrarVagas();
   },
 };
 </script>

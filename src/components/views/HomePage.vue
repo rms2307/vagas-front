@@ -5,7 +5,7 @@
         <componente-pesquisar-vaga />
       </div>
     </div>
-    <componente-lista-vagas :vagas="vagas" />
+    <componente-lista-vagas />
 
     <div class="row mt-5">
       <div class="col-4">
@@ -51,7 +51,6 @@ export default {
   data: () => ({
     usuariosOnline: 0,
     quantidadeVagasAbertas: 0,
-    vagas: [],
   }),
   methods: {
     getUsuariosOnline() {
