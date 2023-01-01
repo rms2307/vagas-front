@@ -13,6 +13,7 @@ export default {
   name: "ComponenteListaVagas",
   data: () => ({
     vagas: [],
+    quantidadeVagas: 0,
   }),
   components: {
     ComponenteVaga,
@@ -29,9 +30,10 @@ export default {
   },
   mounted() {
     this.vagas = JSON.parse(localStorage.getItem("vagas"));
-    this.quantidadeVagasAbertas = this.vagas.length;
+    this.quantidadeVagas = this.vagas.length;
 
     this.filtrarVagas();
+    this.emitter.emit("atualizarQuantidadeVagas", this.quantidadeVagas);
   },
 };
 </script>

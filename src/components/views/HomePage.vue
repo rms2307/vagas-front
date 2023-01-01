@@ -11,7 +11,7 @@
       <div class="col-4">
         <componente-indicador-vaga
           titulo="Vagas abertas"
-          :indicador="quantidadeVagasAbertas"
+          :indicador="quantidadeVagas"
           bg="bg-dark"
           color="text-white"
         />
@@ -50,18 +50,15 @@ export default {
   },
   data: () => ({
     usuariosOnline: 0,
-    quantidadeVagasAbertas: 0,
+    quantidadeVagas: 0,
   }),
   methods: {
     getUsuariosOnline() {
       this.usuariosOnline = Math.floor(Math.random() * 101);
     },
-    filtrarVagas() {
-      this.emitter.on("filtrarVagas", (input) => {
-        const vagas = JSON.parse(localStorage.getItem("vagas"));
-        this.vagas = vagas.filter((v) =>
-          v.titulo.toLowerCase().includes(input.titulo.toLowerCase())
-        );
+    getQuantidadeDeVagas() {
+      this.emitter.on("atualizarQuantidadeVagas", (qtd) => {
+        this.quantidadeVagas = qtd;
       });
     },
   },
@@ -69,10 +66,7 @@ export default {
     setInterval(this.getUsuariosOnline, 1000);
   },
   mounted() {
-    this.vagas = JSON.parse(localStorage.getItem("vagas"));
-    this.quantidadeVagasAbertas = this.vagas.length;
-
-    this.filtrarVagas();
+    this.getQuantidadeDeVagas();
   },
 };
 </script>

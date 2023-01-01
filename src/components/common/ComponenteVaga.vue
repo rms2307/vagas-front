@@ -45,7 +45,6 @@ export default {
       }
     },
   },
-  // props: ["titulo", "descricao", "salario", "modalidade", "tipo", "publicacao"],
   props: {
     titulo: {
       type: String,
