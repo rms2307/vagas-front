@@ -110,8 +110,8 @@ export default {
       this.titulo = "";
       this.descricao = "";
       this.salario = "";
-      this.modalidade = "";
-      this.tipo = "";
+      this.modalidade = 0;
+      this.tipo = 0;
     },
     getDataPublicacao() {
       let tempoDecorrido = Date.now();

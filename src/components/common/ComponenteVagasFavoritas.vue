@@ -52,14 +52,32 @@ export default {
   data: () => ({
     vagas: [],
   }),
+  methods: {
+    getVagasFavoritas() {
+      this.vagas = JSON.parse(localStorage.getItem("vagasFavoritas"));
+    },
+    favoritarVaga(vagaFavoritada) {      
+      if (!this.vagas) this.vagas = [];
+      this.vagas.push(vagaFavoritada);
+
+      localStorage.setItem("vagasFavoritas", JSON.stringify(this.vagas));
+    },
+    desfavoritarVaga(vagaDesfavoritada) {
+      let indiceArray = this.vagas.indexOf(vagaDesfavoritada);
+      if (indiceArray !== -1) this.vagas.splice(indiceArray, 1);
+
+      localStorage.setItem("vagasFavoritas", JSON.stringify(this.vagas));
+    },
+  },
   mounted() {
-    this.emitter.on("favoritarVaga", (titulo) => {
-      this.vagas.push(titulo);
+    this.getVagasFavoritas();
+
+    this.emitter.on("favoritarVaga", (vaga) => {
+      this.favoritarVaga(vaga);
     });
 
-    this.emitter.on("desfavoritarVaga", (titulo) => {
-      let indiceArray = this.vagas.indexOf(titulo);
-      if (indiceArray !== -1) this.vagas.splice(indiceArray, 1);
+    this.emitter.on("desfavoritarVaga", (vaga) => {
+      this.desfavoritarVaga(vaga);
     });
   },
 };

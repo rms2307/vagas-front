@@ -10,6 +10,7 @@
             <input
               type="checkbox"
               class="form-check-input"
+              @click="toggleVagaFavorita()"
               v-model="favoritada"
             />
             <label for="" class="form-check-label">Favoritar</label>
@@ -36,15 +37,6 @@ export default {
   data: () => ({
     favoritada: false,
   }),
-  watch: {
-    favoritada(input) {
-      if (input) {
-        this.emitter.emit("favoritarVaga", this.titulo);
-      } else {
-        this.emitter.emit("desfavoritarVaga", this.titulo);
-      }
-    },
-  },
   props: {
     titulo: {
       type: String,
@@ -95,7 +87,24 @@ export default {
       },
     },
   },
-  methods: {},
+  methods: {
+    verificarSeVagaFavorita() {
+      let vagas = JSON.parse(localStorage.getItem("vagasFavoritas"));
+      if (!vagas) return;
+
+      let indiceArray = vagas.indexOf(this.titulo);
+      if (indiceArray !== -1) return true;
+      return false;
+    },
+    toggleVagaFavorita() {
+      this.favoritada = !this.favoritada;
+      if (this.favoritada) {
+        this.emitter.emit("favoritarVaga", this.titulo);
+      } else {
+        this.emitter.emit("desfavoritarVaga", this.titulo);
+      }
+    },
+  },
   computed: {
     getModalidade() {
       switch (this.modalidade) {
@@ -119,6 +128,9 @@ export default {
       let dataPublicacao = new Date(this.publicacao);
       return dataPublicacao.toLocaleDateString("pt-BR");
     },
+  },
+  mounted() {
+    this.favoritada = this.verificarSeVagaFavorita();
   },
 };
 </script>
