@@ -8,14 +8,6 @@
 
     <div class="row mt-5" v-for="(vaga, index) in vagas" :key="index">
       <div class="col">
-        <!-- <vaga-app
-          :titulo="vaga.titulo"
-          :descricao="vaga.descricao"
-          :salario="vaga.salario"
-          :modalidade="vaga.modalidade"
-          :tipo="vaga.tipo"
-          :publicacao="vaga.publicacao"
-        /> -->
         <componente-vaga v-bind="vaga" />
       </div>
     </div>
@@ -24,7 +16,7 @@
       <div class="col-4">
         <componente-indicador-vaga
           titulo="Vagas abertas"
-          :indicador="vagasAbertas"
+          :indicador="quantidadeVagasAbertas"
           bg="bg-dark"
           color="text-white"
         />
@@ -63,12 +55,20 @@ export default {
   },
   data: () => ({
     usuariosOnline: 0,
-    vagasAbertas: 0,
+    quantidadeVagasAbertas: 0,
     vagas: [],
   }),
   methods: {
     getUsuariosOnline() {
       this.usuariosOnline = Math.floor(Math.random() * 101);
+    },
+    filtrarVagas() {
+      this.emitter.on("filtrarVagas", (input) => {
+        const vagas = JSON.parse(localStorage.getItem("vagas"));
+        this.vagas = vagas.filter((v) =>
+          v.titulo.toLowerCase().includes(input.titulo.toLowerCase())
+        );
+      });
     },
   },
   created() {
@@ -76,7 +76,9 @@ export default {
   },
   mounted() {
     this.vagas = JSON.parse(localStorage.getItem("vagas"));
-    this.vagasAbertas = this.vagas.length;
+    this.quantidadeVagasAbertas = this.vagas.length;
+
+    this.filtrarVagas();
   },
 };
 </script>
