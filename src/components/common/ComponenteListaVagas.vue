@@ -34,7 +34,12 @@ export default {
   },
   mounted() {
     this.vagas = JSON.parse(localStorage.getItem("vagas"));
-    if (this.vagas) this.quantidadeVagas = this.vagas.length;
+    if (this.vagas) {
+      this.vagas = this.vagas.sort((x, y) =>
+        x.publicacao < y.publicacao ? 1 : x.publicacao > y.publicacao ? -1 : 0
+      );
+      this.quantidadeVagas = this.vagas.length;
+    }
 
     this.filtrarVagas();
     this.emitter.emit("atualizarQuantidadeVagas", this.quantidadeVagas);
