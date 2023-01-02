@@ -64,8 +64,6 @@ export default {
   },
   created() {
     setInterval(this.getUsuariosOnline, 1000);
-  },
-  mounted() {
     this.getQuantidadeDeVagas();
   },
 };
