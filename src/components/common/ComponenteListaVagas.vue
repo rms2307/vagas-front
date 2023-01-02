@@ -22,15 +22,19 @@ export default {
     filtrarVagas() {
       this.emitter.on("filtrarVagas", (input) => {
         const vagas = JSON.parse(localStorage.getItem("vagas"));
-        this.vagas = vagas.filter((v) =>
-          v.titulo.toLowerCase().includes(input.titulo.toLowerCase())
+        if (!vagas) return;
+
+        this.vagas = vagas.filter(
+          (v) =>
+            v.titulo.toLowerCase().includes(input.toLowerCase()) ||
+            v.descricao.toLowerCase().includes(input.toLowerCase())
         );
       });
     },
   },
   mounted() {
     this.vagas = JSON.parse(localStorage.getItem("vagas"));
-    this.quantidadeVagas = this.vagas.length;
+    if (this.vagas) this.quantidadeVagas = this.vagas.length;
 
     this.filtrarVagas();
     this.emitter.emit("atualizarQuantidadeVagas", this.quantidadeVagas);

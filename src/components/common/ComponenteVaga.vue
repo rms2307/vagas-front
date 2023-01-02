@@ -65,18 +65,10 @@ export default {
     modalidade: {
       type: String,
       required: true,
-      validator(p) {
-        if (p.length < 5) return false;
-        return true;
-      },
     },
     tipo: {
       type: String,
       required: true,
-      validator(p) {
-        if (p.length < 0) return false;
-        return true;
-      },
     },
     publicacao: {
       type: String,
